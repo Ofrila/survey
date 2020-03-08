@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Survey Result"
+            android:textColor="@color/colorAccent"
+            android:layout_marginLeft="95dp"
+            android:textSize="30sp"
+            android:layout_marginTop="3dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="95dp"
+
+
+            />
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="42dp"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:text="Back"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            android:onClick="Click_back"
+            />
+
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.Which brand of phone will you choose if you are going to buy a new one ? "
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2.How much does your phone cost?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3.What kind of phone are you using?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.What functions does your phone have now?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5.What functions are the most often used?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6.What function do you expect your phone to have in the future?"
+                android:textSize="23sp"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_answer6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7.In which condition will you buy a new phone?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8.Which brand of phone will you choose if you are going to buy a new one ?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9.What characteristic do you think is most important to evaluate a phone?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10.How old are you?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="11.What's your gender?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12.How much money do you earn per month?"
+                android:textSize="23sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_answer12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

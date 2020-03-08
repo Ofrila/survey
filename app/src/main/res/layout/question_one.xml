@@ -5,6 +5,113 @@
     android:orientation="vertical">
 
     <!--  Start : Your code should be within this block -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question 1"
+            android:textSize="27sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorBlack"
+            />
+
+        <TextView
+            android:id="@+id/tv_question1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:text="Which brand of phone will you choose if you are going to buy a new one ?"
+            android:textSize="23sp"
+            />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="30dp"
+            >
+
+            <RadioButton
+                android:id="@+id/radioGroup1.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Iphone"
+                android:textSize="20sp"
+                />
+
+            <RadioButton
+                android:id="@+id/radioGroup1.2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nokia"
+                android:textSize="20sp"/>
+
+            <RadioButton
+                android:id="@+id/radioGroup1.3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Samsung"
+                android:textSize="20sp"/>
+
+            <RadioButton
+                android:id="@+id/radioGroup1.4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MI"
+                android:textSize="20sp"/>
+
+            <RadioButton
+                android:id="@+id/radioGroup1.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lenovo"
+                android:textSize="20sp"/>
+
+            <RadioButton
+                android:id="@+id/radioGroup1.6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sony"
+                android:textSize="20sp"/>
+
+            <RadioButton
+                android:id="@+id/radioGroup1.7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Others"
+                android:textSize="20sp"/>
+
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_next1"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="NEXT"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="66dp"
+            android:onClick="Click_next1"
+
+            />
+    </LinearLayout>
 
 
     <!-- END    : Your code should be within this block -->

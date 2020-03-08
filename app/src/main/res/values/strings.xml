@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Survey</string>
+    <string name="app_name">SvyU</string>
+    <string name="single">Single Select</string>
 </resources>

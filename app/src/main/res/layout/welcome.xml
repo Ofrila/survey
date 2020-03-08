@@ -5,6 +5,94 @@
 
     <!--  Start : Your code should be within this block -->
 
+    <TextView
+        android:id="@+id/tv_welcome1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WELCOME TO"
+        android:textSize="27sp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorBlack"
+
+
+        />
+
+    <TextView
+        android:id="@+id/tv_welcome2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TAKE PART IN OUR SURVEY!"
+        android:textColor="@color/colorBlack"
+        android:textSize="23sp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@id/tv_welcome1"
+        />
+
+    <TextView
+        android:id="@+id/tv_welcomeBefore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:text="Before we start,here are things you should know:"
+        android:textSize="23sp"
+        android:layout_below="@id/tv_welcome2"/>
+
+    <TextView
+        android:id="@+id/tv_before1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:text="-Please be honest when making your choice."
+        android:textSize="20sp"
+        android:layout_below="@id/tv_welcomeBefore"/>
+
+    <TextView
+        android:id="@+id/tv_before2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:text="-We are just doing a research so you don't have to fake your information."
+        android:textSize="20sp"
+        android:layout_below="@id/tv_before1"/>
+
+    <TextView
+        android:id="@+id/tv_before3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:text="-Please follow the step we designed for you and don't skip any questions."
+        android:textSize="20sp"
+        android:layout_below="@id/tv_before2"
+        />
+
+    <CheckBox
+        android:id="@+id/cb_accept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="45dp"
+        android:text="I accept these requests."
+        android:textSize="17sp"
+        android:layout_below="@+id/tv_before3"
+        />
+
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cb_accept"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClickGo"
+        android:text="LETS START"
+        android:textSize="20sp" />
 
     <!-- END    : Your code should be within this block -->
 </RelativeLayout>
