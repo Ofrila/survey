@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     private JSONArray questions;
     private JSONObject[] answers;
-    //static AppCompatActivity mainActivity;
+    static AppCompatActivity mainActivity;
     private int quest_num = 0;
     private int qSeq = 0;
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
        checkbox_accept = (CheckBox) findViewById(R.id.cb_accept);
-       // mainActivity = this;
+        mainActivity = this;
         // initial question list
         questions = GetQuestions();
         if (questions == null) {
@@ -170,8 +170,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // the app will check whether the user agrees to
-    // our requirements or not, then load the question layout
     public void onClickGo(View view) {
         if (checkbox_accept.isChecked()) {
             ToNextPage();
@@ -183,14 +181,14 @@ public class MainActivity extends AppCompatActivity {
 
     // the app will save the user's answer after clicking
     // the button on the single choice question layout
-    public void onClickSingleNext(View view) {
+    public void onClickNext(View view) {
         RadioGroup rGroup = findViewById(R.id.rg_options);
         // get the checked radiobutton
         int checkedId = rGroup.getCheckedRadioButtonId();
         if (checkedId > 0) {
             try{
                 String answer = ((RadioButton) findViewById(checkedId)).getText().toString();
-                Log.i("onClickSingleNext", answer);
+                Log.i("onClickNext", answer);
                 JSONObject jQuestion = new JSONObject();
                 jQuestion.put("type","single");
                 TextView question = findViewById(R.id.tv_question);
