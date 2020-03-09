@@ -10,6 +10,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -66,14 +67,21 @@ public class MainActivity extends AppCompatActivity {
     JSONObject json1, json2, json3, json4, json5, json6, json7, json8, json9, json10, json11, json12;
     JSONArray ja = new JSONArray();
 
-    private JSONArray questions;
+
+    /////////////////////////////
+    ////////////////////////////
+    TextView tv_question,tv_question2;
+    RadioGroup options,options2;
+    Button next,next2;
+
+   /* private JSONArray questions;
     private JSONObject[] answers;
     static AppCompatActivity mainActivity;
     private int quest_num = 0;
-    private int qSeq = 0;
+    private int qSeq = 0;*/
 
     @Override
-    /*protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.welcome);
@@ -99,10 +107,21 @@ public class MainActivity extends AppCompatActivity {
         btn_finish = (Button) findViewById(R.id.btn_finish);
 
 
+        /***************************/
+        /***************************/
+        tv_question=findViewById(R.id.tv_question);
+        options=findViewById(R.id.rg_options);
+        next=findViewById(R.id.btn_next);
+
+        tv_question2=findViewById(R.id.tv_question2);
+        options2=findViewById(R.id.rg_options2);
+        next2=findViewById(R.id.btn_next2);
 
 
-    }*/
-    protected void onCreate(Bundle savedInstanceState) {
+
+
+    }
+    /*protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
        checkbox_accept = (CheckBox) findViewById(R.id.cb_accept);
@@ -117,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
             answers = new JSONObject[quest_num];
         }
         qSeq = 0;
-    }
+    }*/
 
-    private JSONArray GetQuestions() {
+    /*private JSONArray GetQuestions() {
         try {
             // read sample.json
             InputStreamReader inputReader = new InputStreamReader(
@@ -220,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException je) {
             je.printStackTrace();
         }
-    }
+    }*/
 
 
     //welcome
@@ -682,6 +701,70 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+//读取assets目录下的json文件
+    public static  String getJson(String filename,Context context){
+        //change the data (json) into string
+        StringBuilder stringBuilder=new StringBuilder();
+        try{
+            //get assets resource manager
+            AssetManager assetManager=context.getAssets();
+            BufferedReader bf=new BufferedReader(new InputStreamReader(assetManager.open(filename)));
+            String line;
+            while ((line=bf.readLine())!=null){
+                stringBuilder.append(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
+
+
+    }
+
+    //解析json文件的内容
+    public void analyseJson() throws JSONException {
+        String str=getJson("sample.json",this);
+        JSONObject jsonObject=new JSONObject(str);
+        //String question1=jsonObject.getString("questions");
+        //先定位到questions
+        JSONArray jsonArray=jsonObject.getJSONArray("questions");
+        //定位到第一个问题有关内容
+        JSONObject question1=jsonArray.getJSONObject(0);
+        //得到第一个问题
+        String q1=question1.getString("question");
+
+        //得到第一个问题的选项组
+      JSONObject option1=question1.getJSONObject("options");
+        String opt1_1,opt1_2;
+        opt1_1=option1.getString("1");
+        opt1_2=option1.getString("2");
+        tv_question.setText(q1);
+
+
+        //定位到第2个问题有关内容
+        JSONObject question2=jsonArray.getJSONObject(1);
+        //得到第一个问题
+        String q2=question2.getString("question");
+
+        //得到第2个问题的选项组
+        JSONObject option2=question2.getJSONObject("option");
+        String opt2_1,opt2_2,opt2_3,opt2_4,opt2_5;
+        opt2_1=option2.getString("1");
+        opt2_2=option2.getString("2");
+        opt2_3=option2.getString("3");
+        opt2_4=option2.getString("4");
+        opt2_5=option2.getString("5");
+        tv_question2.setText(q2);
+
+
+
+
+
+
+    }
+
+
 
 
 }
