@@ -9,7 +9,12 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82ce1556-f56a-4338-9c43-0b73a510c9f5" name="Default Changelist" comment="" />
+    <list default="true" id="82ce1556-f56a-4338-9c43-0b73a510c9f5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/mg/studio/android/survey/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/mg/studio/android/survey/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dynamiclayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dynamiclayout.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +51,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-03-09T11:04:29.953Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="last_opened_file_path" value="E:/Others/ren/survey" />
+    <property name="last_opened_file_path" value="E:/Others/hh/survey" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
@@ -161,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583756175243</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="dynamic">
+      <created>1583756531268</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1583756531268</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

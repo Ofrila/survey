@@ -1,17 +1,12 @@
 package mg.studio.android.survey;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -20,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -29,7 +23,6 @@ import android.util.Log;
 import android.os.Environment;
 
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -41,18 +34,10 @@ import  java.io.IOException;
 
 import  org.json.JSONObject;
 import org.json.JSONArray;
-import org.json.JSONStringer;
 import  org.json.JSONException;
 
 
-import  java.io.FileOutputStream;
 import java.io.BufferedReader;
-import java.io.EOFException;
-import java.io.InputStream;
-import java.io.BufferedWriter;
-import java.io.IOException;
-
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -65,27 +50,25 @@ public class MainActivity extends AppCompatActivity {
     List<CheckBox> list_q5 = new ArrayList<CheckBox>();
     String str1, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12;
     JSONObject json1, json2, json3, json4, json5, json6, json7, json8, json9, json10, json11, json12;
+    JSONObject[] answers;
     JSONArray ja = new JSONArray();
 
 
     /////////////////////////////
     ////////////////////////////
-    TextView tv_question,tv_question2;
-    RadioGroup options,options2;
-    Button next,next2;
+    int num=0;
+    int Sep=0;
+    TextView tv_question, tv_question2;
+    RadioGroup options, options2;
+    Button next, next2;
+    JSONArray quest;
 
-   /* private JSONArray questions;
-    private JSONObject[] answers;
-    static AppCompatActivity mainActivity;
-    private int quest_num = 0;
-    private int qSeq = 0;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.welcome);
-
 
 
         //welcome
@@ -109,86 +92,19 @@ public class MainActivity extends AppCompatActivity {
 
         /***************************/
         /***************************/
-        tv_question=findViewById(R.id.tv_question);
-        options=findViewById(R.id.rg_options);
-        next=findViewById(R.id.btn_next);
+        tv_question = findViewById(R.id.tv_question);
+        options = findViewById(R.id.rg_options);
+        next = findViewById(R.id.btn_next);
 
-        tv_question2=findViewById(R.id.tv_question2);
-        options2=findViewById(R.id.rg_options2);
-        next2=findViewById(R.id.btn_next2);
-
-
+        tv_question2 = findViewById(R.id.tv_question2);
+        options2 = findViewById(R.id.rg_options2);
+        next2 = findViewById(R.id.btn_next2);
 
 
     }
-    /*protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.welcome);
-       checkbox_accept = (CheckBox) findViewById(R.id.cb_accept);
-        mainActivity = this;
-        // initial question list
-        questions = GetQuestions();
-        if (questions == null) {
-            quest_num = 0;
-            answers = null;
-        } else {
-            quest_num = questions.length();
-            answers = new JSONObject[quest_num];
-        }
-        qSeq = 0;
-    }*/
-
-    /*private JSONArray GetQuestions() {
-        try {
-            // read sample.json
-            InputStreamReader inputReader = new InputStreamReader(
-                    getAssets().open("sample.json"));
-            BufferedReader buffReader = new BufferedReader(inputReader);
-            String line ;
-            StringBuilder text = new StringBuilder();
-            while ((line = buffReader.readLine()) != null) {
-                text.append(line.trim());
-            }
-            inputReader.close();
-            // analyse text
-            JSONObject json = new JSONObject(text.toString());
-            JSONObject survey = json.getJSONObject("survey");
-            // return question json object list
-            return survey.getJSONArray("questions");
-        } catch (IOException ioe) {
-            return null;
-        } catch (JSONException je) {
-            return null;
-        }
-    }
 
 
-    public void setLayout(JSONObject ques,int title_id) throws JSONException {
-        if (ques == null) return;
-        setContentView(R.layout.dynamiclayout);
-        ((TextView) findViewById(R.id.title)).setText(title_id);
-        ((TextView) findViewById(R.id.tv_question)).setText(ques.getString("question"));
-        // get options
-        JSONArray jArray = ques.getJSONArray("options");
-        int size = jArray.length();
-        String[] optionText = new String[size];
-        RadioGroup rGroup = findViewById(R.id.rg_options);
-        RadioGroup.LayoutParams lp = new RadioGroup.LayoutParams(
-                RadioGroup.LayoutParams.MATCH_PARENT,
-                RadioGroup.LayoutParams.WRAP_CONTENT);
-
-        for (int i = 0; i < size; i++) {
-            optionText[i] = ((JSONObject) jArray.get(i)).getString(String.valueOf(i + 1));
-            RadioButton option = new RadioButton(this);
-            option.setText(optionText[i]);
-            option.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                    getResources().getDimension(R.dimen.font_size_average));
-            option.setPadding(0,5,0,5);
-            rGroup.addView(option, lp);
-        }
-    }
-
-
+    /*
     public void onClickGo(View view) {
         if (checkbox_accept.isChecked()) {
             ToNextPage();
@@ -198,55 +114,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // the app will save the user's answer after clicking
-    // the button on the single choice question layout
-    public void onClickNext(View view) {
-        RadioGroup rGroup = findViewById(R.id.rg_options);
-        // get the checked radiobutton
-        int checkedId = rGroup.getCheckedRadioButtonId();
-        if (checkedId > 0) {
-            try{
-                String answer = ((RadioButton) findViewById(checkedId)).getText().toString();
-                Log.i("onClickNext", answer);
-                JSONObject jQuestion = new JSONObject();
-                jQuestion.put("type","single");
-                TextView question = findViewById(R.id.tv_question);
-                jQuestion.put("question", question.getText().toString());
-                JSONObject jOption = new JSONObject();
-                jOption.put("1",answer);
-                jQuestion.put("answer", jOption);
-                answers[qSeq-1] = jQuestion;
-                ToNextPage(); // load next question
-            }catch (JSONException je){
-                return;
-            }
-        }else{
-            Toast.makeText(this, "Please select one",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
-    private void ToNextPage() {
-        try {
-            if (qSeq < quest_num) {
-                JSONObject question = ((JSONObject) questions.get(qSeq++));
-                String type = question.getString("type");
-                if (type.equals("single")) {
-                    setLayout(question, R.string.single);
-                }
-            } else {
-                setContentView(R.layout.finish_survey);
-            }
-        } catch (JSONException je) {
-            je.printStackTrace();
-        }
-    }*/
+
+
+    */
 
 
     //welcome
     public void Click_start(View view) {
         if (checkbox_accept.isChecked()) {
             //setContentView(R.layout.question_one);
-            setContentView(R.layout.dynamiclayout);
+            //setContentView(R.layout.dynamiclayout);
+            NextPage();
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Please accept these requests first.", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
@@ -628,8 +506,8 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(getApplicationContext(),"Request Writing Permission",Toast.LENGTH_LONG).show();
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getApplicationContext(), "Request Writing Permission", Toast.LENGTH_LONG).show();
                     return;
                 }
             }
@@ -637,7 +515,6 @@ public class MainActivity extends AppCompatActivity {
 
         saveDataToFile();
         saveToSdcard();
-
 
 
     }
@@ -662,7 +539,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public  void  saveToSdcard(){
+    public void saveToSdcard() {
         FileOutputStream fos = null;
         //获取SD卡状态
         String state = Environment.getExternalStorageState();
@@ -679,8 +556,7 @@ public class MainActivity extends AppCompatActivity {
             fos = new FileOutputStream(file.getCanonicalPath() + "/sd_data.txt");
 
 
-
-            String data=ja.toString();
+            String data = ja.toString();
 
             fos.write(data.getBytes());
             fos.write('\r');
@@ -702,28 +578,91 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//读取assets目录下的json文件
-    public static  String getJson(String filename,Context context){
+    //读取assets目录下的json文件中的问题
+    public JSONArray getJsonOfQuestion() {
         //change the data (json) into string
-        StringBuilder stringBuilder=new StringBuilder();
-        try{
-            //get assets resource manager
-            AssetManager assetManager=context.getAssets();
-            BufferedReader bf=new BufferedReader(new InputStreamReader(assetManager.open(filename)));
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            InputStreamReader inputReader = new InputStreamReader(
+                    getAssets().open("sample.json"));
+
+            BufferedReader bf = new BufferedReader(inputReader);
             String line;
-            while ((line=bf.readLine())!=null){
+            while ((line = bf.readLine()) != null) {
                 stringBuilder.append(line);
             }
+            inputReader.close();
+
+            JSONObject json = new JSONObject(stringBuilder.toString());
+            JSONObject survey = json.getJSONObject("survey");
+            return survey.getJSONArray("questions");
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return stringBuilder.toString();
-
-
     }
 
+
+    public void setLayout(JSONObject ques,int id) throws JSONException {
+        if (ques == null) return;
+        setContentView(R.layout.dynamiclayout);
+        ((TextView) findViewById(R.id.tv_question)).setText(ques.getString("question"));
+        JSONArray jArray = ques.getJSONArray("options");
+        int size = jArray.length();
+        String[] optionText = new String[size];
+        RadioGroup rGroup = findViewById(R.id.rg_options);
+        RadioGroup.LayoutParams lp = new RadioGroup.LayoutParams(
+                RadioGroup.LayoutParams.MATCH_PARENT,
+                RadioGroup.LayoutParams.WRAP_CONTENT);
+
+        for (int i = 0; i < size; i++) {
+            optionText[i] = ((JSONObject) jArray.get(i)).getString(String.valueOf(i + 1));
+            RadioButton option = new RadioButton(this);
+            option.setText(optionText[i]);
+            option.setTextSize(TypedValue.COMPLEX_UNIT_PX, 20);
+            option.setPadding(0,5,0,5);
+            rGroup.addView(option, lp);
+        }
+    }
+
+    private void NextPage() {
+        try {
+            if (Sep < num) {
+                JSONObject question = ((JSONObject) quest.get(Sep++));
+                    setLayout(question, R.string.single);
+            } else {
+                setContentView(R.layout.finish_survey);
+            }
+        } catch (JSONException je) {
+            je.printStackTrace();
+        }
+    }
+
+    public void onClickNext(View view) {
+        RadioGroup rGroup = findViewById(R.id.rg_options);
+        int checkedId = rGroup.getCheckedRadioButtonId();
+        if (checkedId > 0) {
+            try{
+                String answer = ((RadioButton) findViewById(checkedId)).getText().toString();
+                Log.i("onClickNext", answer);
+                JSONObject jQuestion = new JSONObject();
+                TextView question = findViewById(R.id.tv_question);
+                jQuestion.put("question", question.getText().toString());
+                JSONObject jOption = new JSONObject();
+                jOption.put("1",answer);
+                jQuestion.put("answer", jOption);
+                answers[Sep-1] = jQuestion;
+                NextPage();
+            }catch (JSONException je){
+                return;
+            }
+        }else{
+            Toast.makeText(this, "Please choose one",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
     //解析json文件的内容
-    public void analyseJson() throws JSONException {
+    /*public void analyseJson() throws JSONException {
         String str=getJson("sample.json",this);
         JSONObject jsonObject=new JSONObject(str);
         //String question1=jsonObject.getString("questions");
@@ -756,17 +695,11 @@ public class MainActivity extends AppCompatActivity {
         opt2_4=option2.getString("4");
         opt2_5=option2.getString("5");
         tv_question2.setText(q2);
-
-
-
-
-
-
-    }
-
-
-
+    }*/
 
 }
+
+
+
 
 
