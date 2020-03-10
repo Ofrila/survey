@@ -90,7 +90,7 @@
         android:layout_marginLeft="66dp"
         android:layout_marginTop="10dp"
         android:background="@color/colorPrimary"
-        android:onClick="onClickGo"
+        android:onClick="Click_start"
         android:text="LETS START"
         android:textSize="20sp" />
 

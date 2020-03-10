@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -52,16 +54,20 @@ public class MainActivity extends AppCompatActivity {
     JSONObject json1, json2, json3, json4, json5, json6, json7, json8, json9, json10, json11, json12;
     JSONObject[] answers;
     JSONArray ja = new JSONArray();
-
-
+    TextView Question,Question2;
+    RadioGroup rgoptions,rgoptions2;
+    LinearLayout linearLayout;
+    RadioButton option1_1,option1_2,option2_1,option2_2,option2_3,option2_4,option2_5;
+    Button next,next2;
+    String opt1_1,opt1_2;
     /////////////////////////////
     ////////////////////////////
-    int num=0;
+   /* int num=0;
     int Sep=0;
     TextView tv_question, tv_question2;
     RadioGroup options, options2;
     Button next, next2;
-    JSONArray quest;
+    JSONArray quest;*/
 
 
     @Override
@@ -92,12 +98,12 @@ public class MainActivity extends AppCompatActivity {
 
         /***************************/
         /***************************/
-        tv_question = findViewById(R.id.tv_question);
-        options = findViewById(R.id.rg_options);
+        Question = findViewById(R.id.tv_question);
+        rgoptions = findViewById(R.id.rg_options);
         next = findViewById(R.id.btn_next);
 
-        tv_question2 = findViewById(R.id.tv_question2);
-        options2 = findViewById(R.id.rg_options2);
+        Question2 = findViewById(R.id.tv_question2);
+        rgoptions2 = findViewById(R.id.rg_options2);
         next2 = findViewById(R.id.btn_next2);
 
 
@@ -106,11 +112,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     //welcome
-    public void Click_start(View view) {
+    public void Click_start(View view)  {
         if (checkbox_accept.isChecked()) {
             //setContentView(R.layout.question_one);
-            //setContentView(R.layout.dynamiclayout);
-            NextPage();
+            setContentView(R.layout.dynamiclayout);
+
+
+            //NextPage();
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Please accept these requests first.", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
@@ -507,8 +515,8 @@ public class MainActivity extends AppCompatActivity {
 
     //保存数据到文件
     public void saveDataToFile() {
-        String filename = "data.txt";
-        //String filename="result.json";
+        //String filename = "data.txt";
+        String filename="result.json";
         try {
             FileOutputStream outputStream = openFileOutput(filename, Context.MODE_APPEND);
             String data = ja.toString();
@@ -564,89 +572,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //读取assets目录下的json文件中的问题
-    public JSONArray getJsonOfQuestion() {
-        //change the data (json) into string
-        StringBuilder stringBuilder = new StringBuilder();
-        try {
-            InputStreamReader inputReader = new InputStreamReader(
-                    getAssets().open("sample.json"));
 
-            BufferedReader bf = new BufferedReader(inputReader);
-            String line;
-            while ((line = bf.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            inputReader.close();
-
-            JSONObject json = new JSONObject(stringBuilder.toString());
-            JSONObject survey = json.getJSONObject("survey");
-            return survey.getJSONArray("questions");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-
-    public void setLayout(JSONObject ques) throws JSONException {
-        if (ques == null) return;
-        setContentView(R.layout.dynamiclayout);
-        ((TextView) findViewById(R.id.tv_question)).setText(ques.getString("question"));
-        JSONArray jArray = ques.getJSONArray("options");
-        int size = jArray.length();
-        String[] optionText = new String[size];
-        RadioGroup rGroup = findViewById(R.id.rg_options);
-        RadioGroup.LayoutParams lp = new RadioGroup.LayoutParams(
-                RadioGroup.LayoutParams.MATCH_PARENT,
-                RadioGroup.LayoutParams.WRAP_CONTENT);
-
-        for (int i = 0; i < size; i++) {
-            optionText[i] = ((JSONObject) jArray.get(i)).getString(String.valueOf(i + 1));
-            RadioButton option = new RadioButton(this);
-            option.setText(optionText[i]);
-            option.setTextSize(TypedValue.COMPLEX_UNIT_PX, 20);
-            option.setPadding(0,5,0,5);
-            rGroup.addView(option, lp);
-        }
-    }
-
-    private void NextPage() {
-        try {
-            if (Sep < num) {
-                JSONObject question = ((JSONObject) quest.get(Sep++));
-                    setLayout(question);
-            } else {
-                setContentView(R.layout.finish_survey);
-            }
-        } catch (JSONException je) {
-            je.printStackTrace();
-        }
-    }
-
-    public void onClickNext(View view) {
-        RadioGroup rGroup = findViewById(R.id.rg_options);
-        int checkedId = rGroup.getCheckedRadioButtonId();
-        if (checkedId > 0) {
-            try{
-                String answer = ((RadioButton) findViewById(checkedId)).getText().toString();
-                Log.i("onClickNext", answer);
-                JSONObject jQuestion = new JSONObject();
-                TextView question = findViewById(R.id.tv_question);
-                jQuestion.put("question", question.getText().toString());
-                JSONObject jOption = new JSONObject();
-                jOption.put("1",answer);
-                jQuestion.put("answer", jOption);
-                answers[Sep-1] = jQuestion;
-                NextPage();
-            }catch (JSONException je){
-                return;
-            }
-        }else{
-            Toast.makeText(this, "Please choose one",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
     //解析json文件的内容
     /*public void analyseJson() throws JSONException {
         String str=getJson("sample.json",this);
@@ -682,6 +608,92 @@ public class MainActivity extends AppCompatActivity {
         opt2_5=option2.getString("5");
         tv_question2.setText(q2);
     }*/
+    //从文件读取jsonstr
+    private String getJsonStr(String filename) {
+        StringBuilder stringBuilder=new StringBuilder();
+        try {
+            AssetManager assetManager=MainActivity.this.getAssets();
+            BufferedReader bf=new BufferedReader(new InputStreamReader(assetManager.open(filename),"UTF-8"));
+            String line;
+            while ((line=bf.readLine())!=null){
+                stringBuilder.append(line);
+                Log.d("AAA", line);
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return  stringBuilder.toString();
+
+    }
+
+    public void setLayout() throws JSONException {
+        String str;
+        str=getJsonStr("sample.json");
+        JSONObject jsonObject=new JSONObject(str);
+        /*
+        //得到了survey后面的内容
+        jsonObject.getString("survey");
+        */
+
+        JSONObject survey=jsonObject.getJSONObject("survey");
+
+        //读questions的数目length,这里是2
+        String len=survey.getString("len");
+        int quest_num=Integer.parseInt(len);
+        String array[]=new String[quest_num];
+
+        //得到questions里面的内容
+        JSONArray quest=survey.getJSONArray("questions");
+        int options=quest.length();
+
+
+        //得到第i个问题的全部内容：type,question，options
+        array[0]=quest.getString(0);
+        JSONObject js=new JSONObject(array[0]);
+        String options1=js.getString("options");
+
+        JSONArray opt1=js.getJSONArray("options");
+        //得到第一个问题的选项数
+        opt1.length();
+        opt1.getJSONObject(1).toString();
+        //得到这两个选项的具体内容
+         opt1_1=opt1.getJSONObject(1).getString("1");
+         opt1_2=opt1.getJSONObject(1).getString("2");
+
+        //得到第i个问题的全部内容：type,question，options
+        array[1]=quest.getString(1);
+        JSONObject js2=new JSONObject(array[1]);
+        String options2=js2.getString("options");
+
+        JSONArray opt2=js2.getJSONArray("options");
+        //得到第2个问题的选项数
+        opt2.length();
+        opt2.getJSONObject(1).toString();
+        //得到两个问题的具体内容
+        String quest_1= quest.getJSONObject(0).getString("question");
+        String quest_2= quest.getJSONObject(1).getString("question");
+        //得到这两个选项的具体内容
+        String opt2_1=opt2.getJSONObject(0).getString("1");
+        String opt2_2=opt2.getJSONObject(1).getString("2");
+        String opt2_3=opt2.getJSONObject(2).getString("3");
+        String opt2_4=opt2.getJSONObject(3).getString("4");
+        String opt2_5=opt2.getJSONObject(4).getString("5");
+
+
+        /*LinearLayout linearlayoutx=new LinearLayout(this);
+        LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        layoutParams.setMargins(0,5,0,5);
+        linearlayoutx.setLayoutParams(layoutParams);
+        this.linearLayout.addView(linearlayoutx);
+        RadioButton rb=new RadioButton(this);
+        rb.setText(opt1_1);
+        this.linearLayout.addView(rb);*/
+        option1_1.setText(opt1_1);
+        option1_2.setText(opt1_2);
+
+    }
 
 }
 
