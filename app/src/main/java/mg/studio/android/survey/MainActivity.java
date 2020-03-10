@@ -104,20 +104,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*
-    public void onClickGo(View view) {
-        if (checkbox_accept.isChecked()) {
-            ToNextPage();
-        } else {
-            Toast.makeText(this, "Please accept requirements first!",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-
-    */
-
 
     //welcome
     public void Click_start(View view) {
@@ -603,7 +589,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void setLayout(JSONObject ques,int id) throws JSONException {
+    public void setLayout(JSONObject ques) throws JSONException {
         if (ques == null) return;
         setContentView(R.layout.dynamiclayout);
         ((TextView) findViewById(R.id.tv_question)).setText(ques.getString("question"));
@@ -629,7 +615,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             if (Sep < num) {
                 JSONObject question = ((JSONObject) quest.get(Sep++));
-                    setLayout(question, R.string.single);
+                    setLayout(question);
             } else {
                 setContentView(R.layout.finish_survey);
             }
