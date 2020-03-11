@@ -291,15 +291,6 @@ public class MainActivity extends AppCompatActivity {
                 option2_4.setText(opt2_4);
                 option2_5.setText(opt2_5);
 
-                Question1.setVisibility(View.VISIBLE);
-                Question2.setVisibility(View.VISIBLE);
-                option1_1.setVisibility(View.VISIBLE);
-                option1_2.setVisibility(View.VISIBLE);
-                option2_1.setVisibility(View.VISIBLE);
-                option2_2.setVisibility(View.VISIBLE);
-                option2_3.setVisibility(View.VISIBLE);
-                option2_4.setVisibility(View.VISIBLE);
-                option2_5.setVisibility(View.VISIBLE);
                 group1 = findViewById(R.id.rg_1);
                 group2 = findViewById(R.id.rg_2);
                 if (option1_1.isChecked() || option1_2.isChecked() ) {
@@ -309,6 +300,8 @@ public class MainActivity extends AppCompatActivity {
                      str1 = a1.getText().toString();
 
                 }
+
+
                 if (option2_1.isChecked() || option2_2.isChecked()||option2_3.isChecked() || option2_4.isChecked()|| option2_5.isChecked()) {
 
                     RadioButton a2;
@@ -316,6 +309,7 @@ public class MainActivity extends AppCompatActivity {
                     str2 = a2.getText().toString();
 
                 }
+
 
 
 
@@ -643,9 +637,9 @@ public class MainActivity extends AppCompatActivity {
         answer9.setText(str9);
         answer10.setText(str10);
         answer11.setText(str11);
-        answer12.setText(str12);
+        answer12.setText(str12);*/
 
-        ToJson();*/
+        ToJson();
 
         answer1 = findViewById(R.id.tv_answer1);
         answer2 = findViewById(R.id.tv_answer2);
@@ -664,7 +658,7 @@ public class MainActivity extends AppCompatActivity {
     public void ToJson() throws IOException {
         Map<String, String> map1 = new HashMap<String, String>();
         Map<String, String> map2 = new HashMap<String, String>();
-        Map<String, String> map3 = new HashMap<String, String>();
+        /*Map<String, String> map3 = new HashMap<String, String>();
         Map<String, String> map4 = new HashMap<String, String>();
         Map<String, String> map5 = new HashMap<String, String>();
         Map<String, String> map6 = new HashMap<String, String>();
@@ -673,12 +667,12 @@ public class MainActivity extends AppCompatActivity {
         Map<String, String> map9 = new HashMap<String, String>();
         Map<String, String> map10 = new HashMap<String, String>();
         Map<String, String> map11 = new HashMap<String, String>();
-        Map<String, String> map12 = new HashMap<String, String>();
+        Map<String, String> map12 = new HashMap<String, String>();*/
 
 
-        map1.put("Qustion1.want_to_buy", str1);
-        map2.put("Qustion2.how much", str2);
-        map3.put("Qustion3.the kind of phone", str3);
+        map1.put("Qustion1", str1);
+        map2.put("Qustion2", str2);
+        /*map3.put("Qustion3.the kind of phone", str3);
         map4.put("Qustion4.functions(own)", str4);
         map5.put("Qustion5.the most used functions", str5);
         map6.put("Qustion6.expect functions", str6);
@@ -687,12 +681,12 @@ public class MainActivity extends AppCompatActivity {
         map9.put("Qustion9.the important factory", str9);
         map10.put("Qustion10.age", str10);
         map11.put("Qustion11.gender", str11);
-        map12.put("Qustion12.ern money per month", str12);
+        map12.put("Qustion12.ern money per month", str12);*/
 
         List<Map> list = new ArrayList<Map>();
         list.add(map1);
         list.add(map2);
-        list.add(map3);
+        /*list.add(map3);
         list.add(map4);
         list.add(map5);
         list.add(map6);
@@ -701,12 +695,12 @@ public class MainActivity extends AppCompatActivity {
         list.add(map9);
         list.add(map10);
         list.add(map11);
-        list.add(map12);
+        list.add(map12);*/
 
 
         ja.put(map1);
         ja.put(map2);
-        ja.put(map3);
+       /* ja.put(map3);
         ja.put(map4);
         ja.put(map5);
         ja.put(map6);
@@ -715,7 +709,7 @@ public class MainActivity extends AppCompatActivity {
         ja.put(map9);
         ja.put(map10);
         ja.put(map11);
-        ja.put(map12);
+        ja.put(map12);*/
 
         System.out.println(ja.toString());
 
@@ -796,7 +790,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickNext(View view) {
-        setContentView(R.layout.finish_survey);
+        if (option1_1.isChecked() || option1_2.isChecked() ) {
+            if (option2_1.isChecked() || option2_2.isChecked()||option2_3.isChecked() || option2_4.isChecked()|| option2_5.isChecked()) {
+                setContentView(R.layout.finish_survey);
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Please select one.", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(), "Please select one.", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
+
+
 
     }
 
