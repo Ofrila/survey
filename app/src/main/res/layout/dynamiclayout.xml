@@ -5,31 +5,73 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_question"
+        android:id="@+id/tv_question1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
        android:layout_marginTop="30dp"
         android:textSize="20sp" />
 
-    <ScrollView
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+     <RadioButton
+         android:id="@+id/rb_opt1_1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         />
+
+    <RadioButton
+        android:id="@+id/rb_opt1_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_question2"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp" />
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="66dp">
+    <RadioButton
+        android:id="@+id/rb_opt2_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
-        <RadioGroup
-            android:id="@+id/rg_options"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <RadioButton
+        android:id="@+id/rb_opt2_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <RadioButton
+        android:id="@+id/rb_opt2_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
-        </RadioGroup>
-    </ScrollView>
+    <RadioButton
+        android:id="@+id/rb_opt2_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <RadioButton
+        android:id="@+id/rb_opt2_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
+    </RadioGroup>
     <Button
         android:id="@+id/btn_next"
         android:layout_width="188dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="88dp"
 
         android:background="@color/colorPrimary"
         android:onClick="onClickNext"
