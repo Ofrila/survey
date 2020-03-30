@@ -16,7 +16,7 @@
 * **DataBase**
 
 ## Logo
-！[Svyu icon : a shape of a questionnaire](./blob/master/icon.png)
+![Svyu icon : a shape of a questionnaire.](https://github.com/Ofrila/survey/blob/master/icon.png)
 
 ## Demo
 
