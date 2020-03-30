@@ -19,7 +19,7 @@
 ![Svyu icon : a shape of a questionnaire.](https://github.com/Ofrila/survey/blob/master/icon.png)
 
 ## Demo
-
+[![Click to play a video demonstration.]](https://github.com/Ofrila/survey/blob/master/demo.mp4)
 
 
 ## partner
