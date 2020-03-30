@@ -16,7 +16,7 @@
 * **DataBase**
 
 ## Logo
-
+![Svyu icon:the shape of a questionnaire.](./blob/master/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png)
 ## Demo
 
 
