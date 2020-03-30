@@ -1,60 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/appPadding">
 
     <!--  Start : Your code should be within this block -->
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/welcome_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/final_jumbo"
+        style="@style/Header"/>
+    <TextView
+        android:id="@+id/welcome_subheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcome_header"
+        android:text="@string/final_secondary"
+        style="@style/Subheader"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcome_subheader"
+        android:src="@drawable/finish"
+        android:scaleType="fitStart"/>
+
+    <ProgressBar
+        android:id="@+id/submitProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/nextBtn"
+        android:layout_margin="@dimen/marginS"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/nextBtn"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="THANK YOU "
-            android:textSize="27sp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/colorBlack"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="FOR YOUR ANSWERS!"
-            android:textColor="@color/colorBlack"
-            android:textSize="23sp"
-            android:layout_marginLeft="50dp"
-            />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="400dp"
-            android:background="@drawable/finish"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/btn_finish"
-            android:layout_width="300dp"
-            android:layout_below="@id/cb_accept"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:text="FINISH"
-            android:textSize="20sp"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="66dp"
-            android:onClick="Click_finish"
-
-            />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        style="@style/PrimaryButtonNoAction"
+        android:text="@string/finish"
+        android:onClick="upload"/>
 
     <!-- END    : Your code should be within this block -->
 
-</LinearLayout>
+</RelativeLayout>

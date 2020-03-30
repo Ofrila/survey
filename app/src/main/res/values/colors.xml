@@ -2,9 +2,8 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#008577</color>
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="colorBlack">#000000</color>
-    <color name="colorGray">#D3D3D3</color>
-    <color name="colorPink">#D81B60</color>
+    <color name="colorAccent">#8BC34A</color>
+    <color name="base">#000000</color>
+    <color name="alt">#FFFFFF</color>
+    <color name="baseMedium">#808080</color>
 </resources>
